@@ -22,7 +22,7 @@ string salir = "assets/botones/salir.png",p_salir = "assets/botones/s_salir.png"
 string arrow = "assets/botones/arrow.png",p_arrow = "assets/botones/arrow1.png";
 string background_1 ="assets/POL-parallel-fields-short.wav";
 
-bool done = false,done_inst = false,done_game = false,shoot =false,done_sh = false,boss_shoot = false, done_ganar = false,done_perder;
+bool done = false,done_inst = false,done_game = false,shoot =false,done_sh = false,boss_shoot = true, done_ganar = false,done_perder;
 int moveSpeed = 5,num = 0;
 int x = 0, y = 0;
 
@@ -148,34 +148,34 @@ void comenzarJuego(ALLEGRO_EVENT_QUEUE* event,ALLEGRO_EVENT events, ALLEGRO_TIME
         al_flip_display();
         al_clear_to_color(al_map_rgb(0,0,0));
         al_draw_bitmap(fondo,0,0,NULL);
+
         if(!mode)
         {
-            boss_shoot =true;
-            if(boss_shoot)
+        boss_shoot =true;
+           if(boss_shoot)
             {
-                al_draw_bitmap(bullet,boss_x,boss_y+=2,NULL);
-                al_draw_bitmap(bullet,boss_x+250,boss_y+=2,NULL);
-                al_draw_bitmap(bullet,boss_x+500,boss_y+=2,NULL);
-
                 if(boss_y > 600)
                  {
                   boss_y =  300;
                   boss_shoot = false;
                  }
-                 else
-                    boss_shoot =true;
-            }
-            boss_x+=2;
+
+            if(Colision(boss_x,boss_y,15,20,num_x,num_y,80,80) || Colision(boss_x+250,boss_y,15,20,num_x,num_y,80,80)
+                    || Colision(boss_x+500,boss_y,15,20,num_x,num_y,80,80) )
+                {
+                    vidas--;
+                    boss_shoot = false;
+                }
+        }
+//            boss_x+=2;
                 if(boss_x > 300)
                     mode = true;
         }
             else
         {
+            boss_shoot =true;
            if(boss_shoot)
             {
-                al_draw_bitmap(bullet,boss_x,boss_y+=2,NULL);
-                al_draw_bitmap(bullet,boss_x+250,boss_y+=2,NULL);
-                al_draw_bitmap(bullet,boss_x+500,boss_y+=2,NULL);
                 if(boss_y > 600)
                  {
                   boss_y =  300;
@@ -183,14 +183,13 @@ void comenzarJuego(ALLEGRO_EVENT_QUEUE* event,ALLEGRO_EVENT events, ALLEGRO_TIME
                  }
                  else
                     boss_shoot =true;
-
-        if(Colision(boss_x,boss_y,15,20,num_x,num_y,80,80) || Colision(boss_x+250,boss_y,15,20,num_x,num_y,80,80)
-                || Colision(boss_x+500,boss_y,15,20,num_x,num_y,80,80) )
-        {
-            vidas--;
-            boss_shoot = false;
+            if(Colision(boss_x,boss_y,15,20,num_x,num_y,80,80) || Colision(boss_x+250,boss_y,15,20,num_x,num_y,80,80)
+                    || Colision(boss_x+500,boss_y,15,20,num_x,num_y,80,80) )
+                {
+                    vidas--;
+                    boss_shoot = false;
+                }
         }
-            }
             boss_x-=2;
             if(vidas == 0)
             {
@@ -202,6 +201,9 @@ void comenzarJuego(ALLEGRO_EVENT_QUEUE* event,ALLEGRO_EVENT events, ALLEGRO_TIME
         }
         al_draw_bitmap(boss,boss_x,0,NULL);
         al_draw_bitmap(nave,num_x ,num_y,NULL);
+        al_draw_bitmap(bullet,boss_x,boss_y+=2,NULL);
+        al_draw_bitmap(bullet,boss_x+250,boss_y+=2,NULL);
+        al_draw_bitmap(bullet,boss_x+500,boss_y+=2,NULL);
 
         if(shoot)
         {
@@ -227,7 +229,6 @@ void comenzarJuego(ALLEGRO_EVENT_QUEUE* event,ALLEGRO_EVENT events, ALLEGRO_TIME
         }
         al_draw_textf(font, al_map_rgb(44,117,255),100, 0, ALLEGRO_ALIGN_CENTRE,"SCORE : %d",num);
         al_draw_textf(font, al_map_rgb(44,117,255),700, 0, ALLEGRO_ALIGN_CENTRE,"HP : %d",boss_hp);
-        al_draw_textf(font, al_map_rgb(44,117,255),400, 0, ALLEGRO_ALIGN_CENTRE,"Vidas x %d",vidas);
      }
      al_destroy_sample(soundEffect);
      al_destroy_bitmap(bullet);

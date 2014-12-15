@@ -65,3 +65,36 @@
 1418634705 source:/home/darkwavve/Documentos/Progra3/HTML/Space_Invader/Naves.cpp
 	"Naves.h"
 
+1418678351 source:/home/darkwavve/Documentos/Progra3/Proyecto/Space_Invader/main.cpp
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+	"NaveJugador.h"
+	<list>
+	<iostream>
+
+1418641333 /home/darkwavve/Documentos/Progra3/Proyecto/Space_Invader/NaveJugador.h
+	"Naves.h"
+
+1418640835 /home/darkwavve/Documentos/Progra3/Proyecto/Space_Invader/Naves.h
+	<list>
+	<allegro5/allegro_ttf.h>
+	<allegro5/allegro_font.h>
+	<allegro5/allegro.h>
+	<allegro5/allegro_audio.h>
+	<allegro5/allegro_acodec.h>
+	<allegro5/allegro_image.h>
+	<allegro5/allegro_native_dialog.h>
+	<allegro5/allegro_primitives.h>
+
+1418641333 source:/home/darkwavve/Documentos/Progra3/Proyecto/Space_Invader/NaveJugador.cpp
+	"NaveJugador.h"
+
+1418634705 source:/home/darkwavve/Documentos/Progra3/Proyecto/Space_Invader/Naves.cpp
+	"Naves.h"
+
